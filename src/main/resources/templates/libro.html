@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Book</title>
+	</head>
+	
+	<body>
+		<header>
+			<nav>
+				<a href="/">Home</a>
+				<a href="/libri">Catalogo</a>
+				<a href="/autori">Autori</a>
+			</nav>
+		</header>
+		
+		<h1>Here's yo book, mate!</h1>
+		<div th:if="${libro}">
+			<h2 th:text="${libro.title}">Title</h2>
+			<div>Year: <span th:text="${libro.year}">0000</span></div>
+			<div>Authors:
+				<ul>
+					<li th:each="author : ${libro.autori}">
+						<a th:href="@{/autori/{id}(id=${author.id})}" th:text="${author.nome}">Author</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>

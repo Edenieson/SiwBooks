@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Libro {
@@ -19,7 +19,7 @@ public class Libro {
 	private int year;
 	private String urlImage;
 	
-	@OneToMany
+	@ManyToMany
 	private List<Autore> autori;
 	
 	public Libro() {}

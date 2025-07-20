@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Autore {
@@ -31,7 +32,7 @@ public class Autore {
 	        joinColumns = @JoinColumn(name = "libro_id"),
 	        inverseJoinColumns = @JoinColumn(name = "autore_id")
 			)
-	
+	@ManyToMany
 	private List<Libro> libri;
 	
 	public Autore() {}

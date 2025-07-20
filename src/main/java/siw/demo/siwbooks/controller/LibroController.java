@@ -19,13 +19,13 @@ public class LibroController {
 		return "homepage.html";
 	}
 	
-	@GetMapping("/Libri")
+	@GetMapping("/libri")
 	public String libri(Model model) {
 		model.addAttribute("libro", libroServ.getAllLibri());
 		return "libri.html";
 	}
 	
-	@GetMapping("/Libri/{id}")
+	@GetMapping("/libri/{id}")
 	public String libro(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("libro", libroServ.getLibroById(id));
 		return "libro.html";
