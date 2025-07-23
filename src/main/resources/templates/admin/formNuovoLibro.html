@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>New Book!</title>
+	</head>
+	
+	<body>
+		<header>
+			<nav>
+				<a href="/">Home</a>
+				<a href="/libri">Catalogo</a>
+				<a href="/autori">Autori</a>
+			</nav>
+		</header>
+		
+		<main>
+			<h1>Add yo book, mate!</h1>
+			<section>
+				<form th:action="@{/libri}" method="post" th:object="${newLibro}">
+					<label>Titolo
+						<input required type="text" th:field="${newLibro.titolo}">
+					</label>
+					<label>Anno
+						<input required type="text" th:field="${newLibro.year}">
+					</label>
+					<label>Immagine
+						<input required type="url" th:field="${newLibro.urlImage}">
+					</label>
+					<label>Autore
+						<select th:field="*{autori}" multiple>
+							<option th:each="autore : ${lista_autori}" th:value="${autore.id}" th:text="${autore.nome + ' ' + autore.cognome}"></option>
+						</select>
+					</label>
+					
+					<button>Invio</button>
+				</form>
+			</section>
+		</main>
+	</body>
+</html>

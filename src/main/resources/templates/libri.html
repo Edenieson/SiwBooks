@@ -15,10 +15,10 @@
 		</header>
 		<h1>Book list, mate!</h1>
 		<h2>Still a demo!</h2>
-		<div th:if="${libro.isEmpty()}">No books yet!</div>
+		<div th:if="${libri.isEmpty()}">No books yet!</div>
 		<ul>
-			<li th:each="item : ${libro}">
-				<a th:href="@{/libri/{id} (${item.id})}"
+			<li th:each="item : ${libri}">
+				<a th:href="@{'/libri/' + ${item.id}}"
 					th:text="${item.titolo}">Title</a>
 			</li>
 		</ul>

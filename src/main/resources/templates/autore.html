@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Autore</title>
+	</head>
+	
+	<body>
+		<header>
+			<nav>
+				<a href="/">Home</a>
+				<a href="/libri">Catalogo</a>
+				<a href="/autori">Autori</a>
+			</nav>
+		</header>
+		
+		<h1>Autore</h1>
+		<section th:if="${autore}">
+			<div>Nome: <span th:text="${autore.nome}">???</span> Cognome: <span th:text="${autore.cognome}">???</span></div>
+			<div>Libri:
+				<ul>
+					<li th:each="item : ${autore.libri}">
+						<a th:href="@{'/libri/' + ${item.id}}" th:text="${item.titolo}">Titolo libro</a>
+					</li>
+				</ul>
+			</div>
+			<div th:unless="${autore}">Non esiste l'autore</div>
+		</section>
+	</body>
+</html>

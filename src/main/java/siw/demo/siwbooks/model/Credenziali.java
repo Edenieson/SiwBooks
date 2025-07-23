@@ -2,6 +2,7 @@ package siw.demo.siwbooks.model;
 
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,8 +12,8 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Credenziali {
 	
-	private static final String ADMIN = "ADMIN_USER";
-	private static final String REGULAR = "REGULAR_USER";
+	public static final String DEFAULT_ROLE = "DEFAULT";
+	public static final String ADMIN_ROLE = "ADMIN";
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,7 +22,7 @@ public class Credenziali {
 	private String password;
 	private String role;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Utente utente;
 	
 	public Credenziali() {}
@@ -52,7 +53,7 @@ public class Credenziali {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, password, role, username, utente);
+		return Objects.hash(id, password, role, username, getUtente());
 	}
 
 	@Override
@@ -66,7 +67,15 @@ public class Credenziali {
 		Credenziali other = (Credenziali) obj;
 		return Objects.equals(id, other.id) && Objects.equals(password, other.password)
 				&& Objects.equals(role, other.role) && Objects.equals(username, other.username)
-				&& Objects.equals(utente, other.utente);
+				&& Objects.equals(getUtente(), other.getUtente());
+	}
+
+	public Utente getUtente() {
+		return utente;
+	}
+
+	public void setUtente(Utente utente) {
+		this.utente = utente;
 	}
 	
 	

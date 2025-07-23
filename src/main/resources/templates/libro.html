@@ -15,16 +15,16 @@
 		</header>
 		
 		<h1>Here's yo book, mate!</h1>
-		<div th:if="${libro}">
-			<h2 th:text="${libro.title}">Title</h2>
-			<div>Year: <span th:text="${libro.year}">0000</span></div>
-			<div>Authors:
+		<section th:if="${libro}">
+			<div>Titolo: <span th:text="${libro.titolo}">Titolo</span></div>
+			<div>Anno: <span th:text="${libro.year}">Anno</span></div>
+			<div th:if="${libro.autori}"> Autori:
 				<ul>
-					<li th:each="author : ${libro.autori}">
-						<a th:href="@{/autori/{id}(id=${author.id})}" th:text="${author.nome}">Author</a>
+					<li th:each="item : ${libro.autori}">
+						<div>Nome autore: <a th:href="@{'/autori/' + ${item.id}}"><span th:text="${item.nome + ' ' + item.cognome}">Nome</span></a></div>
 					</li>
 				</ul>
 			</div>
-		</div>
+		</section>
 	</body>
 </html>

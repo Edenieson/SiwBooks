@@ -9,11 +9,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"nome", "cognome"}))
 public class Autore {
 	
 	@Id
@@ -21,21 +22,23 @@ public class Autore {
 	private Long id;
 	private String nome;
 	private String cognome;
+	@Column(name = "data_nascita")
 	private LocalDate dataNascita;
-	@Column(nullable = true)
+	@Column(nullable = true, name = "data_morte")
 	private LocalDate dataMorte;
 	private String nazionalita;
+	@Column(name = "portrait")
 	private String urlImage;
 	
-	@JoinTable(
-			name = "libro_autore",
-	        joinColumns = @JoinColumn(name = "libro_id"),
-	        inverseJoinColumns = @JoinColumn(name = "autore_id")
-			)
-	@ManyToMany
+	
+	@ManyToMany(mappedBy = "autori")
 	private List<Libro> libri;
 	
 	public Autore() {}
+	
+	public Long getId() {
+		return this.id;
+	}
 
 	public String getNome() {
 		return nome;
@@ -87,7 +90,7 @@ public class Autore {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cognome, dataMorte, dataNascita, id, libri, nazionalita, nome, urlImage);
+		return Objects.hash(cognome, dataMorte, dataNascita, id, getLibri(), nazionalita, nome, urlImage);
 	}
 
 	@Override
@@ -101,8 +104,16 @@ public class Autore {
 		Autore other = (Autore) obj;
 		return Objects.equals(cognome, other.cognome) && Objects.equals(dataMorte, other.dataMorte)
 				&& Objects.equals(dataNascita, other.dataNascita) && Objects.equals(id, other.id)
-				&& Objects.equals(libri, other.libri) && Objects.equals(nazionalita, other.nazionalita)
+				&& Objects.equals(getLibri(), other.getLibri()) && Objects.equals(nazionalita, other.nazionalita)
 				&& Objects.equals(nome, other.nome) && Objects.equals(urlImage, other.urlImage);
+	}
+
+	public List<Libro> getLibri() {
+		return libri;
+	}
+
+	public void setLibri(List<Libro> libri) {
+		this.libri = libri;
 	}
 	
 	

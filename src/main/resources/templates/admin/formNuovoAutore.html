@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>New Author</title>
+	</head>
+	
+	<body>
+		<header>
+			<nav>
+				<a href="/">Home</a>
+				<a href="/libri">Catalogo</a>
+				<a href="/autori">Autori</a>
+			</nav>
+		</header>
+		
+		<main>
+			<h1>Enter yo new author, mate!</h1>
+			<form th:action="@{/autori}" method="post" th:object="${autore}">
+				<label> Nome:
+					<input required type="text" th:field="${autore.nome}">
+				</label>
+				<label> Cognome:
+					<input required type="text" th:field="${autore.cognome}">
+				</label>
+				<label>Data di Nascita:
+					<input required type="date" th:field="${autore.dataNascita}">
+				</label>
+				<label>Data di Morte:
+					<input required type="date" th:field="${autore.dataMorte}">
+				</label>
+				<label>Nazione:
+					<input required type="text" th:field="${autore.nazionalita}">
+				</label>
+				<label>Immagine:
+					<input required type="text" th:field="${autore.urlImage}">
+				</label>
+				<button>submit</button>
+			</form>
+		</main>
+				
+	</body>
+</html>

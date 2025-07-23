@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Autori</title>
+	</head>
+	
+	<body>
+		<header>
+			<nav>
+				<a href="/">Home</a>
+				<a href="/libri">Catalogo</a>
+				<a href="/autori">Autori</a>
+			</nav>
+		</header>
+		
+		<main>
+			<h1>Author list!</h1>
+			<h2>Still a demo!</h2>
+			<div th:if="${autori.isEmpty()}">No authors here, mate...</div>
+			<section>
+				<ul>
+					<li th:each="item : ${autori}">
+						<a th:href="@{'/autori/' + ${item.id}}" th:text="${item.nome}">Nome</a>
+					</li>
+				</ul>
+			</section>
+		</main>
+		
+	</body>
+</html>

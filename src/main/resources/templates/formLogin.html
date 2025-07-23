@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Login</title>
+	</head>
+	
+	<body>
+		<header>
+			<nav>
+				<a href="/">Home</a>
+				<a href="/libri">Catalogo</a>
+				<a href="/autori">Autori</a>
+			</nav>
+		</header>
+		
+		<main>
+			<h1>Login</h1>
+			
+			<form th:action="@{/login}" method="post">
+				<div>
+					<label>Username
+						<input name="username" required type="text">
+					</label>
+					<label>Password
+						<input name="password" required type="password">
+					</label>
+					<button>Login</button>
+					<label>Non hai un account?
+						<a th:href="@{/registrazione}" th:text="Registrati">Registrati</a>
+					</label>
+				</div>
+			</form>
+			
+		</main>
+		
+	</body>
+</html>

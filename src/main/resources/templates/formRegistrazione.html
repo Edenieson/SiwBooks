@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Sign in</title>
+	</head>
+	
+	<body>
+		<header>
+			<nav>
+				<a href="/">Home</a>
+				<a href="/libri">Catalogo</a>
+				<a href="/autori">Autori</a>
+			</nav>
+		</header>
+		
+		<main>
+			<h1>Registrazione</h1>
+			<form th:action="@{/registrazione}" method="post">
+				<label>Nome
+					<input type="text" required th:field="${utente.nome}">
+				</label>
+				<label>Cognome
+					<input type="text" required th:field="${utente.cognome}">
+				</label>
+				<label>Email
+					<input type="email" required th:field="${utente.email}">
+				</label>
+				<label>Username
+					<input type="text" required th:field="${credenziali.username}">
+				</label>
+				<label>Password
+					<input type="password" required th:field="${credenziali.password}">
+				</label>
+				<button>Registrati</button>
+			</form>
+		</main>
+	</body>
+</html>
