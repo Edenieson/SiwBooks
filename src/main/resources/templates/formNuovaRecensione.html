@@ -2,7 +2,7 @@
 
 <html>
 	<head>
-		<title>Book</title>
+		<title>Nuova recensione</title>
 	</head>
 	
 	<body>
@@ -11,10 +11,10 @@
 				<a href="/">Home</a>
 				<a href="/libri">Catalogo</a>
 				<a href="/autori">Autori</a>
+				<a href="/login">Login</a>
 			</nav>
 		</header>
 		
-		<h1>Here's yo book, mate!</h1>
 		<section th:if="${libro}">
 			<div>Titolo: <span th:text="${libro.titolo}">Titolo</span></div>
 			<div>Anno: <span th:text="${libro.year}">Anno</span></div>
@@ -28,15 +28,16 @@
 		</section>
 		
 		<section>
-			<div th:if="${recensioni.isEmpty()}">Non ci sono recensioni per questo libro!</div>
-			<div sec:authorize="isAuthenticated()"><a th:href="@{'/libri/' + ${libro.id} + '/formNuovaRecensione'}">Scrivi una recensione!</a></div>
-			<ul>
-				<li th:each="item : ${recensioni}">
-					<div>Autore: <span th:text="${item.autore.username}">Username</span></div>
-					<div><p th:text="${item.testo}">Descrizione della recensione</p></div>
-					<div>Voto:<span th:text="${item.voto}">5</span></div>
-				</li>
-			</ul>
+			<form th:action="@{'/libri/' + ${libro.id} + '/recensione'}" method="post" th:object="${recensione}">
+				<label>Voto:
+					<input required type="number" step="0.5" name="voto" th:field="${recensione.voto}">
+				</label>
+				<label>Descrizione:
+					<input required type="text" name="descrizione" th:field="${recensione.testo}">
+				</label>
+				<button>Crea</button>
+			</form>
 		</section>
+				
 	</body>
 </html>

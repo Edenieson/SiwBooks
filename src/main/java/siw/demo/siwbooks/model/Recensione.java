@@ -19,7 +19,7 @@ public class Recensione {
 	private String testo;
 	
 	@OneToOne
-	private Utente utente;
+	private Utente autore;
 	
 	@ManyToOne
 	private Libro libro;
@@ -44,7 +44,7 @@ public class Recensione {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, testo, voto);
+		return Objects.hash(getId(), testo, voto);
 	}
 
 	@Override
@@ -56,7 +56,31 @@ public class Recensione {
 		if (getClass() != obj.getClass())
 			return false;
 		Recensione other = (Recensione) obj;
-		return Objects.equals(id, other.id) && Objects.equals(testo, other.testo) && voto == other.voto;
+		return Objects.equals(getId(), other.getId()) && Objects.equals(testo, other.testo) && voto == other.voto;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Libro getLibro() {
+		return libro;
+	}
+
+	public void setLibro(Libro libro) {
+		this.libro = libro;
+	}
+
+	public Utente getAutore() {
+		return autore;
+	}
+
+	public void setAutore(Utente autore) {
+		this.autore = autore;
 	}
 	
 	

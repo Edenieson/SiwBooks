@@ -18,12 +18,24 @@ public class RecensioneService {
 		return this.recensioneRepo.findById(id).get();
 	}
 	
+	public Iterable<Recensione> getAllRecensioni(){
+		return this.recensioneRepo.findAll();
+	}
+	
 	public Iterable<Recensione> getRecensioneByLibro(Libro libro){
 		return this.recensioneRepo.findByLibro(libro);
 	}
 	
 	public Recensione getRecensioneByUtente(Utente utente) {
 		return this.recensioneRepo.findByUtente(utente);
+	}
+	
+	public boolean existsByLibroAndAutore(Libro libro, Utente autore) {
+	    return this.recensioneRepo.existsByLibroAndAutore(libro, autore);
+	}
+	
+	public void save(Recensione recensione) {
+		this.recensioneRepo.save(recensione);
 	}
 	
 }

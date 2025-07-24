@@ -89,6 +89,14 @@ public class Libro {
 	public void setAutori(List<Autore> autori) {
 		this.autori = autori;
 	}
+
+	public List<Recensione> getRecensioni() {
+		return recensioni;
+	}
+
+	public void setRecensioni(List<Recensione> recensioni) {
+		this.recensioni = recensioni;
+	}
 	
 	
 	

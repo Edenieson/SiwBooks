@@ -23,4 +23,8 @@ public class AutoreService {
 	public Autore save(Autore autore) {
 		return autoreRepo.save(autore);
 	}
+	
+	public void deleteById(Long id) {
+		autoreRepo.deleteById(id);
+	}
 }

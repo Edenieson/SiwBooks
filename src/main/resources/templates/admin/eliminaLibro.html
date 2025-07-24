@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Delete book</title>
+	</head>
+	
+	<body>
+		<header>
+			<nav>
+				<a href="/">Home</a>
+				<a href="/libri">Catalogo</a>
+				<a href="/autori">Autori</a>
+				<a href="/login">Login</a>
+			</nav>
+		</header>
+		
+		<main>
+			<h1>Delete books!</h1>
+			<div th:if="${libri.isEmpty()}">No books here, mate</div>
+			<section>
+				<form th:action="@{/admin/deleteLibri/delete}" method="post">
+					<button>Elimina selezionati</button>
+					<ul>
+						<li th:each="item : ${libri}">
+							<span th:text="${item.titolo + ' ' + item.autore.cognome}">Shining</span>
+							<input type="checkbox" name="libriDaEliminare" th:value="${item.id}">
+						</li>
+					</ul>
+				</form>
+			</section>
+		</main>
+				
+	</body>
+</html>

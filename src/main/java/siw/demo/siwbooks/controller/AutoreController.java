@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import siw.demo.siwbooks.model.Autore;
 import siw.demo.siwbooks.service.AutoreService;
@@ -39,6 +40,24 @@ public class AutoreController {
     public String nuovoAutore(@ModelAttribute("autore") Autore autore) {
         this.autoreServ.save(autore);
         return "redirect:/autori/" + autore.getId();
+    }
+    
+    /*Per eliminare autori*/
+    @GetMapping("/admin/deleteAutore")
+    public String gestioneAutori(Model model) {
+    	Iterable<Autore> autori = autoreServ.getAllAutore();
+    	model.addAttribute("autori", autori);
+    	return "/admin/eliminaAutore.html";
+    }
+    
+    @PostMapping("/admin/deleteAutore/delete")
+    public String eliminaAutori(@RequestParam(name = "autoriDaEliminare", required = false) Iterable<Long> autoriDaEliminare) {
+    	if(autoriDaEliminare != null) {
+    		for(Long id : autoriDaEliminare) {
+    			autoreServ.deleteById(id);
+    		}
+    	}
+    	return "redirect:/admin/deleteAutore";
     }
 }
 

@@ -23,4 +23,8 @@ public class LibroService {
 	public Libro save(Libro libro) {
 		return libroRepo.save(libro);
 	}
+	
+	public void deleteById(Long id) {
+		libroRepo.deleteById(id);
+	}
 }
